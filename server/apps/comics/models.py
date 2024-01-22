@@ -5,14 +5,6 @@ from django.core.validators import FileExtensionValidator
 
 class Comic(models.Model):
     
-    def cover_upload_to(self, instance = None):
-        
-        if instance:
-            
-            return os.path.join("cover", self.title, "comic", instance)
-        
-        return None
-    
     ERA_TYPES = (
         ("1980", "1980"),
         ("1990", "1990"),
@@ -59,7 +51,7 @@ class Comic(models.Model):
         ("時代劇", "時代劇"),
     )
     
-    title = models.CharField(verbose_name = "タイトル", max_length = 100, primary_key=True)
+    title = models.CharField(verbose_name = "タイトル", max_length = 100)
     author = models.CharField(verbose_name = "作者", max_length = 100)
     era = models.CharField(verbose_name = "年代", max_length = 100, choices = ERA_TYPES)
     publisher = models.CharField(verbose_name = "出版社", max_length = 100, choices = PUBLISHER_TYPES)
