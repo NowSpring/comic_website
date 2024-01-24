@@ -1,10 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Signin from "../views/Signin.vue";
 import HomeView from "../views/HomeView.vue";
+import EditorView from "../views/EditorView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/signin",
+    name: "signin",
+    component: Signin,
+  },
   {
     path: "/",
     name: "home",
@@ -19,6 +26,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/editor",
+    name: "editor",
+    component: EditorView,
+    props: true
+  }
 ];
 
 const router = new VueRouter({
