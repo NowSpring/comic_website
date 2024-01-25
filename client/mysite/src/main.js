@@ -4,7 +4,8 @@ import router from "./router";
 import vuetify from "./plugins/vuetify";
 import VueSession from 'vue-session'
 import vSelect from 'vue-select' 
-import '@mdi/font/css/materialdesignicons.css'
+import '@mdi/font/css/materialdesignicons.css' // この行を追加
+
 
 Vue.use(VueSession)
 Vue.component('v-select', vSelect) 

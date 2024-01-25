@@ -31,7 +31,7 @@
             </v-card-title>
 
             <v-card-subtitle>
-              {{ card.comic.author}}
+              {{ card.comic.author }}
             </v-card-subtitle>
 
             <v-card-actions>
@@ -86,7 +86,6 @@ export default {
       comics: [],
       next: null,
       loadingComics: false,
-      // show: false,
     };
   },
   methods: {

@@ -89,3 +89,21 @@ export default {
   }
 }
 </style> -->
+<template>
+    <v-icon>
+        {{ mdiTwitterSvgPath }}
+    </v-icon>
+</template>
+  
+<script>
+import { mdiTwitter, mdiGithub } from '@mdi/js'
+
+export default {
+data () {
+    return {
+    mdiTwitterSvgPath: mdiTwitter,
+    mdiGithubSvgPath: mdiGithub
+    }
+}
+}
+</script>
