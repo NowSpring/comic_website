@@ -15,30 +15,30 @@
       </div>
 
       <v-row>
-        <v-col cols="4" v-for="comic in comics" :key="comic.pk">
+        <v-col cols="4" v-for="(card, index) in cards" :key="index">
           <v-card
             class="mx-auto"
             max-width="344"
           >
             <v-img
-              :src=comic.cover
+              :src=card.comic.cover
               height="200px"
               cover
             ></v-img>
 
             <v-card-title>
-              {{ comic.title }}
+              {{ card.comic.title }}
             </v-card-title>
 
             <v-card-subtitle>
-              {{ comic.author}}
+              {{ card.comic.author}}
             </v-card-subtitle>
 
             <v-card-actions>
               <v-btn
                 color="orange-lighten-2"
                 variant="text"
-                @click="linkToOtherWindow(comic.pdf)"
+                @click="linkToOtherWindow(card.comic.pdf)"
               >
                 Read
               </v-btn>
@@ -46,13 +46,13 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                @click="show = !show"
+                :icon="card.show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="card.show = !card.show"
               ></v-btn>
             </v-card-actions>
 
             <v-expand-transition>
-              <div v-show="show">
+              <div v-show="card.show">
                 <v-divider></v-divider>
 
                 <v-card-text>
@@ -86,7 +86,7 @@ export default {
       comics: [],
       next: null,
       loadingComics: false,
-      show: false,
+      // show: false,
     };
   },
   methods: {
