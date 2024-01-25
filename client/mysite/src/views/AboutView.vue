@@ -82,6 +82,7 @@ export default {
   },
   data() {
     return {
+      cards: [],
       comics: [],
       next: null,
       loadingComics: false,
@@ -100,8 +101,21 @@ export default {
         // console.log("status:",response.status)
         // console.log("axiosGetData:",response.data)
         this.comics.push(...response.data.results);
-        console.log("comics:", this.comics);
+        // console.log("comics:", this.comics);
+        this.createCards();
       })
+    },
+    createCards() {
+      for(var comic in this.comics){
+          var card = {}
+          var show = false
+          card.comic = this.comics[comic]
+          card.show = show
+          this.cards.push(card)
+          // console.log("comic:", this.comics[comic].author)
+          // console.log("card:", card)
+        }
+        console.log("cards:", this.cards)
     },
     linkToOtherWindow(url) {
       window.open(url, '_blank')
@@ -109,7 +123,6 @@ export default {
   },
   created() {
     this.getComics();
-    console.log(this.comics);
     document.title = "Comic Board";
   },
 };
