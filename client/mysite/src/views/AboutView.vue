@@ -45,10 +45,14 @@
 
               <v-spacer></v-spacer>
 
-              <v-btn
-                :icon="card.show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+              <v-btn 
+                class="btn"
                 @click="card.show = !card.show"
-              ></v-btn>
+              >
+                <v-icon v-if="card.show">mdi-chevron-up</v-icon>
+                <v-icon v-else>mdi-chevron-down</v-icon>
+              </v-btn>
+
             </v-card-actions>
 
             <v-expand-transition>

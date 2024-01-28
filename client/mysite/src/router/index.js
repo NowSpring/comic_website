@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Signin from "../views/Signin.vue";
 import HomeView from "../views/HomeView.vue";
 import EditorView from "../views/EditorView.vue";
+import TestView from "../views/TestView.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,12 @@ const routes = [
     path: "/editor",
     name: "editor",
     component: EditorView,
+    props: true
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: TestView,
     props: true
   }
 ];

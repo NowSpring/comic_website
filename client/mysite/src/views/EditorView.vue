@@ -1,7 +1,7 @@
-<!-- <template>
-  <div>
+<template>
+  <div class="text-center">
     <v-container>
-      <form @submit.prevent="onSubmit">
+      <v-form>
         <v-text-field
           v-model="title"
           label="タイトル"
@@ -13,67 +13,76 @@
           required
         ></v-text-field>
         <v-select
-          v-model="era"
+          :items="era"
           label="年代"
           required
-        ></v-text-field>
-        <v-text-field
-          v-model="title"
-          label="タイトル"
+        ></v-select>
+        <v-select
+          :items="publisher"
+          label="出版社"
           required
-        ></v-text-field>
-        <v-text-field
-          v-model="title"
-          label="タイトル"
+        ></v-select>
+        <v-select
+          :items="target"
+          label="対象"
           required
-        ></v-text-field>
-        <v-text-field
-          v-model="title"
-          label="タイトル"
+        ></v-select>
+        <v-select
+          :items="genre"
+          label="ジャンル"
           required
-        ></v-text-field>
-      </form>
+        ></v-select>
+        <v-file-input label="カバー図" v-model="cover" accept=".png"
+        ></v-file-input>
+        <v-file-input label="漫画PDF" v-model="pdf" accept=".pdf"
+        ></v-file-input>
+
+        <v-btn
+          color="success"
+          type="submit"
+          @click="onSubmit()"
+        >登録
+        </v-btn>
+      </v-form>
     </v-container>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 export default {
   name: "ComicEditor",
   data() {
     return {
-      title: null
+      title: null,
+      author: null,
+      era: ["1980", "1990", "2000", "2010"],
+      publisher: ["エニックス", "学習研究科", "小学館", "少年画報社", "徳間書店", "朝日ソラノマ", "東京三世社", "白泉社", "秋田書店", "竹書房", "芳文社", "角川書店", "講談社", "集英社"],
+      target: ["少年", "少女", "女性", "男性"],
+      genre: ["4コマ", "SF", "ギャグ", "サスペンス", "スポーツ", "バトル", "ファンタジー", "ホラー", "ラブコメ", "動物", "恋愛", "時代劇"],
+      cover: null,
+      pdf: null
     };
   },
   methods: {
     onSubmit() {
-      let endpoint = "/api/jobs/";
-      let method = "POST";
-      if (this.id !== undefined) {
-        endpoint += `${this.id}/`;
-        method = "PUT";
-      }
-      apiService(endpoint, method, {
-        company_name: this.company_name,
-        company_email: this.company_email,
-        job_title: this.job_title,
-        job_description: this.job_description,
-        salary: this.salary,
-        prefectures: this.prefectures,
-        city: this.city,
-      }).then(job_data => {
-        this.$router.push({
-          name: 'job',
-          params: { id: job_data.id }
-        })
+      let endpoint = "http://localhost:8000/api/comics/";
+      axios.post(endpoint, {
+        "title":this.title,
+        "author": this.author,
+        "era": this.era,
+        "publisher": this.publisher,
+        "target": this.target,
+        "genre": this.genre,
+        "cover": this.cover,
+        "pdf": this.pdf
+      }).then(response => {
+        console.log(
+          "body:", response.body
+        )
       })
     },
-  created() {
-    this.getComics();
-    console.log(this.comics);
-    document.title = "Comic Board";
-  },
+  }
 };
 </script>
 
@@ -88,22 +97,4 @@ export default {
     margin-top: 20px;
   }
 }
-</style> -->
-<template>
-    <v-icon>
-        {{ mdiTwitterSvgPath }}
-    </v-icon>
-</template>
-  
-<script>
-import { mdiTwitter, mdiGithub } from '@mdi/js'
-
-export default {
-data () {
-    return {
-    mdiTwitterSvgPath: mdiTwitter,
-    mdiGithubSvgPath: mdiGithub
-    }
-}
-}
-</script>
+</style>
