@@ -1,46 +1,56 @@
 <template>
   <div class="text-center">
     <v-container>
-      <v-form>
+      <v-form @submit.prevent="onSubmit">
         <v-text-field
-          v-model="title"
+          v-model="form.title"
           label="タイトル"
           required
         ></v-text-field>
         <v-text-field
-          v-model="author"
+          v-model="form.author"
           label="作者名"
           required
         ></v-text-field>
         <v-select
-          :items="era"
+          v-model="form.era"
+          :items="items.era"
           label="年代"
           required
         ></v-select>
         <v-select
-          :items="publisher"
+          v-model="form.publisher"
+          :items="items.publisher"
           label="出版社"
           required
         ></v-select>
         <v-select
-          :items="target"
+          v-model="form.target"
+          :items="items.target"
           label="対象"
           required
         ></v-select>
         <v-select
-          :items="genre"
+          v-model="form.genre"
+          :items="items.genre"
           label="ジャンル"
           required
         ></v-select>
-        <v-file-input label="カバー図" v-model="cover" accept=".png"
+        <v-file-input
+          v-model="form.cover"
+          label="カバー図"
+          accept=".png"
+          @change="onCoverChange"
         ></v-file-input>
-        <v-file-input label="漫画PDF" v-model="pdf" accept=".pdf"
+        <v-file-input 
+          v-model="form.pdf"
+          label="漫画PDF"
+          accept=".pdf"
+          @change="onPDFChange"
         ></v-file-input>
-
         <v-btn
           color="success"
           type="submit"
-          @click="onSubmit()"
         >登録
         </v-btn>
       </v-form>
@@ -54,33 +64,44 @@ export default {
   name: "ComicEditor",
   data() {
     return {
-      title: null,
-      author: null,
-      era: ["1980", "1990", "2000", "2010"],
-      publisher: ["エニックス", "学習研究科", "小学館", "少年画報社", "徳間書店", "朝日ソラノマ", "東京三世社", "白泉社", "秋田書店", "竹書房", "芳文社", "角川書店", "講談社", "集英社"],
-      target: ["少年", "少女", "女性", "男性"],
-      genre: ["4コマ", "SF", "ギャグ", "サスペンス", "スポーツ", "バトル", "ファンタジー", "ホラー", "ラブコメ", "動物", "恋愛", "時代劇"],
-      cover: null,
-      pdf: null
+      form: {
+        title: "",
+        author: "",
+        era: "",
+        publisher: "",
+        target: "",
+        genre: "",
+        cover: null,
+        pdf: null,
+      },
+      items: {
+        era: ["1980", "1990", "2000", "2010"],
+        publisher: ["エニックス", "学習研究科", "小学館", "少年画報社", "徳間書店", "朝日ソラノマ", "東京三世社", "白泉社", "秋田書店", "竹書房", "芳文社", "角川書店", "講談社", "集英社"],
+        target: ["少年", "少女", "女性", "男性"],
+        genre: ["4コマ", "SF", "ギャグ", "サスペンス", "スポーツ", "バトル", "ファンタジー", "ホラー", "ラブコメ", "動物", "恋愛", "時代劇"],
+      },
     };
   },
   methods: {
-    onSubmit() {
+    onCoverChange(file) {
+      this.form.cover = file;
+    },
+    onPDFChange(file) {
+      this.form.pdf = file;
+    },
+    async onSubmit() {
+      const formData = new FormData();
+      formData.append("title", this.form.title);
+      formData.append("author", this.form.author);
+      formData.append("era", this.form.era);
+      formData.append("publisher", this.form.publisher);
+      formData.append("target", this.form.target);
+      formData.append("genre", this.form.genre);
+      formData.append("cover", this.form.cover);
+      formData.append("pdf", this.form.pdf);
       let endpoint = "http://localhost:8000/api/comics/";
-      axios.post(endpoint, {
-        "title":this.title,
-        "author": this.author,
-        "era": this.era,
-        "publisher": this.publisher,
-        "target": this.target,
-        "genre": this.genre,
-        "cover": this.cover,
-        "pdf": this.pdf
-      }).then(response => {
-        console.log(
-          "body:", response.body
-        )
-      })
+      await axios.post(endpoint, formData);
+      this.$router.push({ name: 'about'});
     },
   }
 };
