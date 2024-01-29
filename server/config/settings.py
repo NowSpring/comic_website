@@ -176,6 +176,6 @@ MEDIA_URL = '/media/'
 
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 4,
+    'PAGE_SIZE': 10,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination'
 }

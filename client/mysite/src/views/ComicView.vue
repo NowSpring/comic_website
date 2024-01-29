@@ -104,7 +104,7 @@ export default {
         // console.log("status:",response.status)
         // console.log("axiosGetData:",response.data)
         this.comics.push(...response.data.results);
-        // console.log("comics:", this.comics);
+        console.log("comics:", this.comics);
         this.createCards();
       })
     },

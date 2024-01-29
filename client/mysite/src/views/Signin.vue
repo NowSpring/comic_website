@@ -90,7 +90,7 @@ export default {
             axios.post('http://localhost:8000/signin/', this.credentials).then(res => {
                 this.$session.start();
                 this.$session.set('token', res.data.token);
-                router.push('/about');
+                router.push('/');
             // eslint-disable-next-line
             }).catch(e => {
                 this.loading = false;
