@@ -88,6 +88,7 @@ export default {
             if (this.$refs.form.validate()) {
             this.loading = true;
             axios.post('http://localhost:8000/signin/', this.credentials).then(res => {
+                this.$store.commit('login')
                 this.$session.start();
                 this.$session.set('token', res.data.token);
                 router.push('/');

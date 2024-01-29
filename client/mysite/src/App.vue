@@ -24,11 +24,12 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        v-if="isLoggedIn"
         target="_blank"
         text
+        @click="logout"
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Logout</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -42,9 +43,16 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.commit('logout');
+      this.$router.push('/signin');
+    }
+  }
 };
 </script>
