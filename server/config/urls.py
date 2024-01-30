@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signin/', obtain_jwt_token),
     path('api/', include('comics.api.urls')),
+    path('accounts/', include('accounts.api.urls')),
 ]
 
 if settings.DEBUG:
