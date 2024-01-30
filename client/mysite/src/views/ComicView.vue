@@ -14,9 +14,18 @@
         </div>
       </div>
 
-
       <v-row>
-        <v-col cols="4" v-for="(card, index) in cards" :key="index">
+
+        <v-col cols="12">
+          <v-text-field
+            v-model="searchQuery"
+            label="Search"
+            append-icon="mdi-mabnify"
+            @click:append="search"
+          ></v-text-field>
+        </v-col>
+
+        <v-col cols="4" v-for="(card, index) in filteredCards" :key="index">
           <v-card
             class="mx-auto"
             max-width="344"
@@ -145,12 +154,21 @@ export default {
     return {
       cards: [],
       comics: [],
+      searchQuery: '',
       tab_index: 0,
       thWidth: '150px',
       tdWidth: '200px', 
       next: null,
       loadingComics: false,
     };
+  },
+  computed: {
+    filteredCards() {
+      if (!this.searchQuery) {
+        return this.cards
+      }
+      return this.cards.filter(card => card.comic.title.includes(this.searchQuery));
+    }
   },
   methods: {
     checkSignin() {
@@ -182,7 +200,10 @@ export default {
     },
     linkToOtherWindow(url) {
       window.open(url, '_blank')
-    }
+    },
+    search() {
+
+    },
   },
   created() {
     this.getComics();
