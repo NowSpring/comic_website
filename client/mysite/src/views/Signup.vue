@@ -32,7 +32,7 @@ export default {
             try {
                 const response = await axios.post('http://localhost:8000/accounts/signup/', userData);
                 console.log(response.data);
-                // 成功した場合の処理（例：メッセージを表示、別のページにリダイレクト等）
+                this.$router.push({ name: 'signin' });
             } catch (error) {
                 console.error("There was an error!", error);
                 // エラーが発生した場合の処理

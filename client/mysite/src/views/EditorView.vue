@@ -101,7 +101,7 @@ export default {
       formData.append("pdf", this.form.pdf);
       let endpoint = "http://localhost:8000/api/comics/";
       await axios.post(endpoint, formData);
-      this.$router.push({ name: ''});
+      this.$router.push({ name: '' });
     },
   }
 };
