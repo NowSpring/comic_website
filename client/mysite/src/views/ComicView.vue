@@ -67,14 +67,32 @@
                 </v-tabs> -->
 
                 <v-card-text>
-                  <v-row>
-                    <v-col cols="6">テスト</v-col>
-                    <v-col cols="6">テスト</v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="6">テスト</v-col>
-                    <v-col cols="6">テスト</v-col>
-                  </v-row>
+                  <table>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">作品名</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.title }}</td>
+                    </tr>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">作者名</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.author }}</td>
+                    </tr>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">出版年代</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.era }}</td>
+                    </tr>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">出版社</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.publisher }}</td>
+                    </tr>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">対象</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.target }}</td>
+                    </tr>
+                    <tr>
+                      <th :style="{ width: thWidth, textAlign: 'left' }">ジャンル</th>
+                      <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.genre }}</td>
+                    </tr>
+                  </table>
                   <!-- <v-window v-model="infos">
                     <v-window-item value="info">
                         info test
@@ -111,6 +129,8 @@ export default {
     return {
       cards: [],
       comics: [],
+      thWidth: '150px',
+      tdWidth: '200px', 
       next: null,
       loadingComics: false,
     };
