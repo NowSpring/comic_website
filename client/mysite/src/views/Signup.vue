@@ -15,19 +15,19 @@ import axios from 'axios';
 export default {
     data() {
         return {
-        username: '',
-        email: '',
-        password: '',
-        isSuperuser: false
+            username: '',
+            email: '',
+            password: '',
+            isSuperuser: false
         };
     },
     methods: {
         async onSubmit() {
             const userData = {
-            username: this.username,
-            email: this.email,
-            password: this.password,
-            is_superuser: this.isSuperuser
+                username: this.username,
+                email: this.email,
+                password: this.password,
+                is_superuser: this.isSuperuser
             };
             try {
                 const response = await axios.post('http://localhost:8000/accounts/signup/', userData);

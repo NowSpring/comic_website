@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import ComicView from "../views/ComicView.vue"
 import EditorView from "../views/EditorView.vue";
 import TestView from "../views/TestView.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,13 @@ const routes = [
     path: "/",
     name: "comic",
     component: ComicView,
+    beforeEnter: (to, from, next) => {
+      if (!store.state.isLoggedIn) {
+        next('/signin')
+      } else {
+        next()
+      }
+    }
   },
   {
     path: "/editor",

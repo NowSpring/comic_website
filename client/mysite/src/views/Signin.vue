@@ -50,7 +50,7 @@
 
                         </v-container>
                         <v-btn class="pink white--text" :disabled="!valid" @click="signin">Signin</v-btn>
-                        <v-btn :disabled="!valid" to="/signup">Signup</v-btn>
+                        <v-btn to="/signup">Signup</v-btn>
                     </v-form>
 
 
