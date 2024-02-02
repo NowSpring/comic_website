@@ -71,61 +71,42 @@
               <div v-show="card.show">
                 <v-divider></v-divider>
 
-                <!-- <v-tabs v-model="infos">
-                  <v-tab value="info">Info</v-tab>
-                  <v-tab value="review">Review</v-tab>
-                </v-tabs> -->
+                <v-tabs v-model="card.tab" background-color="transparent">
+                  <v-tab>Info</v-tab>
+                  <v-tab>Review</v-tab>
+                </v-tabs>
 
                 <v-card-text>
-                  <div>
-                    <!-- <v-btn-toggle
-                      v-model="tag_index"
-                      mandatory
-                    >
-                      <v-btn
-                        class="tab"
-                        active-class="selectd"
-                      >
-                        Info
-                      </v-btn>
-                      <v-btn
-                        class="tab"
-                        active-class="selectd"
-                      >
-                        Review
-                      </v-btn>
-                    </v-btn-toggle> -->
-                    <div v-if="tab_index === 0">
-                      <table>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">作品名</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.title }}</td>
-                        </tr>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">作者名</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.author }}</td>
-                        </tr>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">出版年代</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.era }}</td>
-                        </tr>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">出版社</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.publisher }}</td>
-                        </tr>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">対象</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.target }}</td>
-                        </tr>
-                        <tr>
-                          <th :style="{ width: thWidth, textAlign: 'left' }">ジャンル</th>
-                          <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.genre }}</td>
-                        </tr>
-                      </table>
-                    </div>
-                    <div v-if="tab_index === 1">
-                      <p>テスト</p>
-                    </div>
+                  <div v-if="card.tab === 0">
+                    <table>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">作品名</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.title }}</td>
+                      </tr>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">作者名</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.author }}</td>
+                      </tr>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">出版年代</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.era }}</td>
+                      </tr>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">出版社</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.publisher }}</td>
+                      </tr>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">対象</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.target }}</td>
+                      </tr>
+                      <tr>
+                        <th :style="{ width: thWidth, textAlign: 'left' }">ジャンル</th>
+                        <td :style="{ width: tdWidth, textAlign: 'left' }">{{ card.comic.genre }}</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div v-if="card.tab === 1">
+                    <p>テスト</p>
                   </div>
                 </v-card-text>
               </div>
@@ -155,7 +136,6 @@ export default {
       cards: [],
       comics: [],
       searchQuery: '',
-      tab_index: 0,
       thWidth: '150px',
       tdWidth: '200px', 
       next: null,
@@ -190,8 +170,10 @@ export default {
       for(var comic in this.comics){
           var card = {}
           var show = false
+          var tab = 0
           card.comic = this.comics[comic]
           card.show = show
+          card.tab = tab
           this.cards.push(card)
           // console.log("comic:", this.comics[comic].author)
           // console.log("card:", card)
