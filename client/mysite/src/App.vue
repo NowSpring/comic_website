@@ -16,6 +16,15 @@
 
       <v-btn
         v-if="isLoggedIn"
+        text
+        to="/"
+        >
+          <span>{{ currentUser.username }}</span>
+          <v-icon>mdi-account</v-icon>
+      </v-btn>
+
+      <v-btn
+        v-if="isLoggedIn"
         target="_blank"
         text
         @click="logout"
@@ -37,6 +46,9 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.state.isLoggedIn;
+    },
+    currentUser() {
+      return this.$store.state.user;
     }
   },
   methods: {

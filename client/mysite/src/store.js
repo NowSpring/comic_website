@@ -7,14 +7,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // state: Vuexで管理する状態を定義
   state: {
+    user: null,
     isLoggedIn: false,
   },
   mutations: {
-    login(state) {
-        state.isLoggedIn = true;
+    setUser(state, user) {
+      state.user = user;
+      state.isLoggedIn = true;
     },
     logout(state) {
-        state.isLoggedIn = false;
-    }
+      state.user = null;
+      state.isLoggedIn = false;
+    },
   },
 })
