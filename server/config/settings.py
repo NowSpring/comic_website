@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'comics',
-    'reviews.apps.ReviewsConfig',
+    'reviews',
 ]
 
 REST_FRAMEWORK = {
