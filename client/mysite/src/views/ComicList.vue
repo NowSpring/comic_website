@@ -152,7 +152,7 @@ export default {
       }
     },
     getComics() {
-      return axios.get("http://localhost:8000/comics/comics/").then((response) => {
+      return axios.get("http://localhost:8000/api/comics/").then((response) => {
         this.comics.push(...response.data.results);
         console.log("comics:", this.comics);
       })

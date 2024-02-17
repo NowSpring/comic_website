@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from comics.models import Comic
+from .serializers import ComicSerializer
 
-# Create your views here.
+
+
+class ComicViewSet(viewsets.ModelViewSet):
+    queryset = Comic.objects.all()
+    serializer_class = ComicSerializer
+
+
+    
