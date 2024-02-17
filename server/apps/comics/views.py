@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from comics.models import Comic
-from .serializers import ComicSerializer
+from comics.serializers import ComicSerializer
 
 
 

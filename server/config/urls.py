@@ -25,8 +25,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('signin/', include('accounts.urls')),
     path('accounts/', include('accounts.api.urls')),
-    path('reviews/', include('reviews.api.urls')),
-    path('favorite/', include('reviews.urls')),
 ]
 
 if settings.DEBUG:

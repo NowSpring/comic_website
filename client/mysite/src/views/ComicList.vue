@@ -158,7 +158,7 @@ export default {
       })
     },
     getReviews() {
-      return axios.get(`http://localhost:8000/reviews/reviews/?user=${this.$store.state.user.id}`).then((response) => {
+      return axios.get(`http://localhost:8000/api/reviews/?user=${this.$store.state.user.id}`).then((response) => {
         this.reviews.push(...response.data.results);
         console.log("reviews:", this.reviews);
       })
@@ -169,7 +169,7 @@ export default {
       this.updateReview(review);
     },
     updateReview(review) {
-      axios.put(`http://localhost:8000/reviews/reviews/${review.id}`, {
+      axios.put(`http://localhost:8000/api/reviews/${review.id}`, {
         isfavorite: review.isfavorite,
         // 他の必要なフィールドもここに含めるかもしれません
       }).then(response => {

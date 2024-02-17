@@ -2,8 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # from accounts.models import User
 from django.contrib.auth.models import User
-from comics.models import Comic
-from .models import Review
+from .models import Review, Comic
 
 @receiver(post_save, sender=User)
 def create_user_reviews(sender, instance, created, **kwargs):
