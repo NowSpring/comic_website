@@ -17,14 +17,15 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
-from rest_framework_jwt.views import obtain_jwt_token
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signin/', obtain_jwt_token),
-    path('api/', include('comics.api.urls')),
+    path('signin/', include('accounts.urls')),
+    path('comics/', include('comics.api.urls')),
     path('accounts/', include('accounts.api.urls')),
+    path('reviews/', include('reviews.api.urls')),
+    path('favorite/', include('reviews.urls')),
 ]
 
 if settings.DEBUG:

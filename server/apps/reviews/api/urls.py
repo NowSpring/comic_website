@@ -1,11 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from comics.api import views
+from reviews.api import views
 
 router = DefaultRouter()
-router.register(r'comics', views.ComicViewSet)
+router.register(r'reviews', views.ReviewViewSet)
 
 urlpatterns = [
-    path("", include(router.urls)), 
+    path("", include(router.urls)),
 ]

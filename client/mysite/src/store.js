@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     isLoggedIn: false,
+    reviews: []
   },
   mutations: {
     setUser(state, user) {

@@ -2,9 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Signin from "../views/Signin.vue";
 import Signup from "../views/Signup.vue";
-import ComicView from "../views/ComicView.vue"
-import EditorView from "../views/EditorView.vue";
-import TestView from "../views/TestView.vue";
+import ComicList from "../views/ComicList.vue";
+import ComicReview from "../views/ComicReview.vue";
+import ComicRegister from "../views/ComicRegister.vue";
+import Test from "../views/Test.vue";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -22,8 +23,8 @@ const routes = [
   },
   {
     path: "/",
-    name: "comic",
-    component: ComicView,
+    name: "comic_list",
+    component: ComicList,
     beforeEnter: (to, from, next) => {
       if (!store.state.isLoggedIn) {
         next('/signin')
@@ -33,15 +34,21 @@ const routes = [
     }
   },
   {
-    path: "/editor",
-    name: "editor",
-    component: EditorView,
+    path: "/comic_review/:title",
+    name: "comic_review",
+    component: ComicReview,
+    props: true
+  },
+  {
+    path: "/comic_register",
+    name: "comic_register",
+    component: ComicRegister,
     props: true
   },
   {
     path: "/test",
     name: "test",
-    component: TestView,
+    component: Test,
     props: true
   }
 ];
